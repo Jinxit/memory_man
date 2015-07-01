@@ -7,11 +7,11 @@ class firstfit_manager : public memory_manager
 {
 protected:
 	using compare_function = std::function<bool(const block&, const block&)>;
+	std::multiset<block, compare_function> free_blocks;
 
 	virtual void coalesce() = 0;
 
 public:
-	std::multiset<block, compare_function> free_blocks;
 	firstfit_manager(unsigned int memory_size, compare_function comp)
 		: memory_manager(memory_size), free_blocks(comp)
 		{

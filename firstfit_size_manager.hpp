@@ -1,7 +1,6 @@
 #pragma once
 
 #include "firstfit_manager.hpp"
-#include <iostream>
 
 class firstfit_size_manager : public firstfit_manager
 {
