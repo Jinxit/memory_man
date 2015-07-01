@@ -9,14 +9,14 @@ protected:
 	using compare_function = std::function<bool(const block&, const block&)>;
 	std::multiset<block, compare_function> free_blocks;
 
-	virtual void coalesce() = 0;
-
 public:
 	firstfit_manager(unsigned int memory_size, compare_function comp)
 		: memory_manager(memory_size), free_blocks(comp)
 		{
 			free_blocks.emplace_hint(free_blocks.begin(), 0, memory_size);
 		};
+
+	virtual void coalesce() = 0;
 
 	virtual block alloc(unsigned int size)
 	{
@@ -42,6 +42,5 @@ public:
 	{
 		free_size += b.size;
 		free_blocks.insert(std::forward<block>(b));
-		coalesce();
 	}
 };
