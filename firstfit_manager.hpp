@@ -27,10 +27,10 @@ public:
 		{
 			if (it->size > size)
 			{
-				block result = *it;
-				free_blocks.emplace_hint(it, result.start + size, result.size - size);
+				block result(it->start, size);
+				free_blocks.emplace_hint(it, it->start + size, it->size - size);
 				free_blocks.erase(it);
-				return block(result.start, size);
+				return result;
 			}
 		}
 		//TODO: compact memory here
