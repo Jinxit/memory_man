@@ -5,12 +5,14 @@
 
 class firstfit_manager : public memory_manager
 {
+protected:
 	using compare_function = std::function<bool(const block&, const block&)>;
-	std::multiset<block, compare_function> free_blocks;
+
+	virtual void coalesce() = 0;
 
 public:
-	firstfit_manager(unsigned int memory_size, 
-		compare_function comp = compare_increasing_size)
+	std::multiset<block, compare_function> free_blocks;
+	firstfit_manager(unsigned int memory_size, compare_function comp)
 		: memory_manager(memory_size), free_blocks(comp)
 		{
 			free_blocks.emplace_hint(free_blocks.begin(), 0, memory_size);
@@ -40,16 +42,6 @@ public:
 	{
 		free_size += b.size;
 		free_blocks.insert(std::forward<block>(b));
-		//TODO: coalesce
-	}
-
-	static bool compare_increasing_size(const block& a, const block& b)
-	{
-		return a.size < b.size;
-	}
-
-	static bool compare_memory_location(const block& a, const block& b)
-	{
-		return a.start < b.start;
+		coalesce();
 	}
 };
