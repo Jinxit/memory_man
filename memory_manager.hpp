@@ -9,7 +9,10 @@ public:
 	{
 		const unsigned int start;
 		const unsigned int size;
+
+		block(unsigned int start, unsigned int size) : start(start), size(size) { };
 	};
+
 	const unsigned int memory_size;
 
 	virtual block alloc(unsigned int size) = 0;
