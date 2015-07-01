@@ -1,7 +1,7 @@
 #pragma once
 
-#include <set>
 #include "memory_manager.hpp"
+#include <set>
 
 class firstfit_manager : public memory_manager
 {
