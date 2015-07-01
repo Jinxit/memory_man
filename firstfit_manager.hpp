@@ -16,8 +16,6 @@ public:
 			free_blocks.emplace_hint(free_blocks.begin(), 0, memory_size);
 		};
 
-	virtual void coalesce() = 0;
-
 	virtual block alloc(unsigned int size)
 	{
 		if (size > free_size)
@@ -35,7 +33,6 @@ public:
 				return result;
 			}
 		}
-		//TODO: compact memory here
 	}
 
 	virtual void free(block&& b)
