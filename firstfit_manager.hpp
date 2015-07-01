@@ -5,6 +5,7 @@
 
 class firstfit_manager : public memory_manager
 {
+	using compare_function = std::function<bool(const block&, const block&)>;
 	std::multiset<block, compare_function> free_blocks;
 
 public:
@@ -40,5 +41,15 @@ public:
 		free_size += b.size;
 		free_blocks.insert(std::forward<block>(b));
 		//TODO: coalesce
+	}
+
+	static bool compare_increasing_size(const block& a, const block& b)
+	{
+		return a.size < b.size;
+	}
+
+	static bool compare_memory_location(const block& a, const block& b)
+	{
+		return a.start < b.start;
 	}
 };

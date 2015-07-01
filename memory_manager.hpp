@@ -4,10 +4,10 @@
 
 class memory_manager
 {
-	unsigned int free_size;
-
 protected:
 	memory_manager(unsigned int memory_size) : memory_size(memory_size), free_size(memory_size) { };
+
+	unsigned int free_size;
 
 public:
 	struct block
@@ -23,16 +23,4 @@ public:
 
 	virtual block alloc(unsigned int size) = 0;
 	virtual void free(block&& b) = 0;
-
-	using compare_function = std::function<bool(const block&, const block&)>;
-
-	static bool compare_increasing_size(const block& a, const block& b)
-	{
-		return a.size < b.size;
-	}
-
-	static bool compare_memory_location(const block& a, const block& b)
-	{
-		return a.start < b.start;
-	}
 };
