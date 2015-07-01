@@ -1,5 +1,7 @@
 #pragma once
 
+#include <functional>
+
 class memory_manager
 {
 protected:
@@ -17,4 +19,16 @@ public:
 
 	virtual block alloc(unsigned int size) = 0;
 	virtual void free(block b) = 0;
+
+	using compare_function = std::function<bool(const block&, const block&)>;
+
+	static bool compare_increasing_size(const block& a, const block& b)
+	{
+		return a.size < b.size;
+	}
+
+	static bool compare_memory_location(const block& a, const block& b)
+	{
+		return a.start < b.start;
+	}
 };
