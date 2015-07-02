@@ -1,10 +1,10 @@
 #pragma once
 
-#include "memory_manager.hpp"
 #include <set>
 #include <map>
-#include <iostream>
+#include <functional>
 #include <assert.h>
+#include "memory_manager.hpp"
 
 // memory manager that uses the buddy system
 // https://en.wikipedia.org/wiki/Buddy_memory_allocation

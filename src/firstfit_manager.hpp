@@ -1,7 +1,8 @@
 #pragma once
 
-#include "memory_manager.hpp"
 #include <set>
+#include <functional>
+#include "memory_manager.hpp"
 
 // interface for the first fit memory managers
 class firstfit_manager : public memory_manager
