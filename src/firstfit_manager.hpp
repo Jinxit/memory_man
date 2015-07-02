@@ -15,6 +15,7 @@ public:
 	firstfit_manager(unsigned int memory_size, compare_function comp)
 		: memory_manager(memory_size), free_blocks(comp)
 		{
+			// place a single full sized block on the free list
 			free_blocks.emplace_hint(free_blocks.begin(), 0, memory_size);
 		};
 
