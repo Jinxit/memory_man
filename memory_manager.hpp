@@ -24,4 +24,9 @@ public:
 	virtual block alloc(unsigned int size) = 0;
 	virtual void free(block&& b) = 0;
 	virtual void coalesce() = 0;
+
+	float get_usage()
+	{
+		return float(memory_size - free_size) / memory_size;
+	}
 };

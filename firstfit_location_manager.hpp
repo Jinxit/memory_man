@@ -28,8 +28,7 @@ public:
 					free_blocks.emplace_hint(it_a, it_a->start, it_a->size + it_b->size);
 					free_blocks.erase(it_a);
 					free_blocks.erase(it_b);
-					++it_a;
-					break;
+					--it_a;
 				}
 			}
 		}
